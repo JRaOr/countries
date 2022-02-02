@@ -27,7 +27,7 @@ export default function Header({title}){
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className='flex items-center h-[100%] justify-between content'>
-                <p className=' font-bold text-lg'>
+                <p className=' font-bold text-lg md:text-2xl'>
                     Where in the World?
                 </p>
                 <div onClick={()=>{
