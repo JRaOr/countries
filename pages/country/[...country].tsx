@@ -2,8 +2,9 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Header from "../../components/Header";
+import Layout from "../../components/Layout";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const country = context.query.country[0] as string;
     const data = await axios.get(`https://restcountries.com/v2/name/${country.replace(/-/ig, '%20')}`)
     return{
@@ -13,20 +14,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
 }
 
-export default function Country(props){
+export default function Country(props: any){
     console.log(props)
     const router = useRouter()
     return(
-        <>
-            <Header title={props.name}/>
-            <button onClick={()=>{
-                router.push('/')
-            }}>
-                return
-            </button>
-            <h1>
-                Hello
-            </h1>
-        </>
+        <Layout title={props.name}>
+
+        </Layout>
     )
 }

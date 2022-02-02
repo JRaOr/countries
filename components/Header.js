@@ -21,20 +21,20 @@ export default function Header({title}){
         }
     }
     return(
-        <div className='w-100 h-[8vh] bg-gray-100 shadow-md sticky top-0 dark:bg-[#2b3743] dark:text-white'>
+        <div className='w-100 h-[8vh] bg-gray-100 shadow-md sticky top-0 dark:bg-[#2b3743] dark:text-white flex justify-center z-10 md:px-5 sm:px-5 px-8 lg:px-[0]'>
             <Head>
                 <title>Where in the World?{(title ? ` | ${title}`:'')}</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className='flex items-center h-[100%] w-[100%] justify-between px-20'>
-                <p className=' font-bold text-2xl'>
+            <div className='flex items-center h-[100%] justify-between content'>
+                <p className=' font-bold text-lg'>
                     Where in the World?
                 </p>
                 <div onClick={()=>{
                     changeTheme()
                 }} className='flex items-center gap-2 cursor-pointer'>
                     <BsMoonFill/>
-                    <p>Dark mode</p>
+                    <p className='hidden sm:flex'>Dark mode</p>
                 </div>
             </div>
         </div>

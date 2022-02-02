@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import CountryCard from '../components/CountryCard'
+import Layout from '../components/Layout'
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await axios.get('https://restcountries.com/v3.1/all')
     return{
@@ -71,42 +72,38 @@ export default function Home({data} : any){
     },[searcher, region])
 
     return(
-        <>
-            <Header title={''}/>
-            <div className='w-[100vw] h-[92vh] overflow-scroll overflow-x-hidden px-20 py-10  dark:bg-[#212e37] dark:text-white'>
-                {/* Tools */}
-                <div className='w-[100%] flex items-center justify-between'>
-                    <div className='flex h-10 bg-white px-5 items-center gap-5 shadow-md dark:bg-[#2b3743] dark:text-white'>
-                        <AiOutlineSearch/>
-                        <input value={searcher} onChange={(e)=>{
-                            setSearcher(e.target.value)
-                        }} className='outline-none  bg-transparent dark:text-white' placeholder='Search for a country...'/>
-                    </div>
+        <Layout title={''}>
+            <div className='w-[100%] flex items-center justify-between flex-col gap-6 sm:flex-row'>
+                <div className='flex h-10 bg-white px-5 items-center gap-5 shadow-md dark:bg-[#2b3743] dark:text-white'>
+                    <AiOutlineSearch/>
+                    <input value={searcher} onChange={(e)=>{
+                        setSearcher(e.target.value)
+                    }} className='outline-none  bg-transparent dark:text-white' placeholder='Search for a country...'/>
+                </div>
 
-                    <select value={region} onChange={(e)=>{
-                        setRegion(e.target.value)
-                    }} className='h-10 border-[1px] bg-white border-blue-100 px-5 items-center gap-5 shadow-sm flex outline-none justify-center dark:bg-[#2b3743] dark:text-white dark:border-none'>
-                        <option value=''>Select by Region</option>
-                        <option value="Africa">Africa</option>
-                        <option value="America">America</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Europe">Europe</option>
-                        <option value="Oceania">Oceania</option>
-                    </select>
-                </div>
-                {/* Countries container */}
-                <div className='mt-10 grid grid-cols-5 gap-10'>
-                    {displaycountries.map((country: any, index: number)=>(index < maxCountries && <CountryCard {...country} key={`card-${index}`}/>))}
-                </div>
-                {maxCountries < displaycountries.length &&
-                <div className='flex items-center justify-center p-5'>
-                    <button onClick={()=>{
-                        setMaxCountries(maxCountries + 20)
-                    }} className='border-2 border-blue-400 px-5 py-2 rounded-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300'>
-                        Show more
-                    </button>
-                </div>}
+                <select value={region} onChange={(e)=>{
+                    setRegion(e.target.value)
+                }} className='h-10 border-[1px] bg-white border-blue-100 px-5 items-center gap-5 shadow-sm flex outline-none justify-center dark:bg-[#2b3743] dark:text-white dark:border-none'>
+                    <option value=''>Select by Region</option>
+                    <option value="Africa">Africa</option>
+                    <option value="America">America</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
             </div>
-        </>
+            {/* Countries container */}
+            <div className='mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10'>
+                {displaycountries.map((country: any, index: number)=>(index < maxCountries && <CountryCard {...country} key={`card-${index}`}/>))}
+            </div>
+            {maxCountries < displaycountries.length &&
+            <div className='flex items-center justify-center p-5'>
+                <button onClick={()=>{
+                    setMaxCountries(maxCountries + 20)
+                }} className='border-2 border-blue-400 px-5 py-2 rounded-lg cursor-pointer hover:scale-105 transition-all ease-in-out duration-300'>
+                    Show more
+                </button>
+            </div>}
+        </Layout>
     )
 }
