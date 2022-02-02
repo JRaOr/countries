@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Nurito Sans Bold';
+    src: url('/fonts/NunitoSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Nurito Sans Extra Bold';
+    src: url('/fonts/NunitoSans-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: 'Nurito Sans Light';
+    src: url('/fonts/NunitoSans-Light.ttf');
+}
 
 .content{
     width: 100%;
@@ -22,4 +36,12 @@
 .card{
     height: 350px;
     max-width: 255px;
+}
+
+*{
+    font-family: 'Nurito Sans Light';
+}
+
+.title{
+    font-family: 'Nurito Sans Extra Bold';
 }

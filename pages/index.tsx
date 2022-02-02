@@ -73,7 +73,7 @@ export default function Home({data} : any){
 
     return(
         <Layout title={''}>
-            <div className='w-[100%] flex items-center justify-between flex-col gap-6 sm:flex-row'>
+            <div className='w-[100%] flex items-center justify-between flex-col gap-6 sm:flex-row text-[14px]'>
                 <div className='flex h-10 bg-white px-5 items-center gap-5 shadow-md dark:bg-[#2b3743] dark:text-white'>
                     <AiOutlineSearch/>
                     <input value={searcher} onChange={(e)=>{

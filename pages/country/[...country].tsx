@@ -7,7 +7,7 @@ import { AiOutlineArrowLeft }  from 'react-icons/ai'
 import { useEffect, useState } from "react";
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const country = context.query.country[0] as string;
-    const data = await axios.get(`https://restcountries.com/v2/name/${country.replace(/-/ig, '%20')}`)
+    const data = await axios.get(`https://restcountries.com/v2/name/${country.replace(/_/ig, '%20')}`)
     return{
         props: {
             ...data.data[0],
