@@ -61,7 +61,7 @@ export default function Country(props: any){
         setFrontier(temp)
     }
     useEffect(()=>{
-        if(borders.length > 0){
+        if(borders && borders.length > 0){
             _renderBorder(borders)
         }
     }, [borders])
